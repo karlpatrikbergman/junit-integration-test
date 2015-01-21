@@ -9,7 +9,7 @@ import static org.junit.Assert.assertNotNull;
 
 public class DataSourceInjectionTest {
 
-	@InjectTestResource(getFactory = DataSourceFactory.class, getMethod = "createAccountDataSource")
+	@InjectTestResource(getFactory = DataSourceFactory.class, getMethod = DataSourceFactoryMethod.ACCOUNT)
 	public static DataSourceImpl accountDataSource;
 
 	@ClassRule
