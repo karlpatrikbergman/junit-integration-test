@@ -11,7 +11,7 @@ public class CustomerInfoFactory {
 	private final DataSource accountDataSource;
 	private final String accountNumber;
 
-	public CustomerInfoFactory() {
+	private CustomerInfoFactory() {
 		accountDataSource = DataSourceFactory.getInstance().createDataSource(DatabaseDomain.ACCOUNT);
 		accountNumber = UserConfigurationFactory.getInstance().createUserConfiguration().getAccountNumber();
 	}

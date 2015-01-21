@@ -12,7 +12,7 @@ public final class DataSourceFactory {
 
 	private final Environment environment;
 
-	public DataSourceFactory() {
+	private DataSourceFactory() {
 		environment = EnvironmentUtil.getEnvironmentFromClasspath();
 	}
 
