@@ -1,19 +1,18 @@
 package se.patrikbergman.service.test.fixture.resource.customer;
 
-import se.patrikbergman.service.test.fixture.domain.DatabaseDomain;
-import se.patrikbergman.service.test.fixture.resource.datasource.DataSourceFactory;
-import se.patrikbergman.service.test.fixture.resource.user.UserConfigurationFactory;
+import se.patrikbergman.service.test.fixture.environment.Environment;
+import se.patrikbergman.service.test.fixture.environment.util.EnvironmentUtil;
+import se.patrikbergman.service.test.util.resource.ResourceProperties;
 
-import javax.sql.DataSource;
+import java.io.IOException;
+import java.util.Properties;
 
 public class CustomerInfoFactory {
 
-	private final DataSource accountDataSource;
-	private final String accountNumber;
+	private final Environment environment;
 
 	private CustomerInfoFactory() {
-		accountDataSource = DataSourceFactory.getInstance().createDataSource(DatabaseDomain.ACCOUNT);
-		accountNumber = UserConfigurationFactory.getInstance().createUserConfiguration().getAccountNumber();
+		environment = EnvironmentUtil.getInstance().getEnvironmentFromClasspath();
 	}
 
 	private static class LazyHolder {
@@ -24,25 +23,23 @@ public class CustomerInfoFactory {
 		return LazyHolder.INSTANCE;
 	}
 
-	public CustomerInfo createCustomerInfo() {
-		return new CustomerInfoDAO(accountNumber, accountDataSource).fetchCustomerInfo();
-	}
-
-	/**
-	 * Some service that fetches customer info for a user in current environment
+	/** In a real world example we would use DataSourceFactory and fetch user information from
+	 *  a database in current test-environment (dev/test/qa)
+	 * @return
 	 */
-	private class CustomerInfoDAO {
-		private final String accountNumber;
-		private final DataSource dataSource;
-
-		CustomerInfoDAO(final String accountNumber, final DataSource dataSource) {
-			this.accountNumber = accountNumber;
-			this.dataSource = dataSource;
-		}
-
-		CustomerInfo fetchCustomerInfo() {
-			//Use data source and account number to fetch customer info
-			return new CustomerInfo("Patrik", "Bergman", "patrik.bergman", "some-secret-password");
+	public CustomerInfo createCustomerInfo() {
+		try {
+			final String resourceOnClasspath = String.format("%s/customerinfo.properties", environment.getName());
+			final Properties properties = new ResourceProperties(resourceOnClasspath);
+			return new CustomerInfo.Builder()
+					.firstName(properties.getProperty("firstname"))
+					.lastName(properties.getProperty("lastname"))
+					.username(properties.getProperty("username"))
+					.password(properties.getProperty("password"))
+					.phone(properties.getProperty("phone"))
+					.build();
+		} catch (IOException e) {
+			throw new RuntimeException("Failed to create customer info. " + e.getMessage());
 		}
 	}
 }

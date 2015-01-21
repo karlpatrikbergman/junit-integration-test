@@ -4,6 +4,7 @@ import org.junit.ClassRule;
 import org.junit.Test;
 import se.patrikbergman.service.test.fixture.rule.TestResourcesRule;
 import se.patrikbergman.service.test.fixture.rule.annotation.InjectTestResource;
+import se.patrikbergman.service.test.util.JsonString;
 
 import static org.junit.Assert.assertNotNull;
 
@@ -18,6 +19,6 @@ public class CustomerInfoInjectionTest {
 	@Test
 	public void createCustomerInfo() {
 		assertNotNull(customerInfo);
-		System.out.println(customerInfo);
+		System.out.println(new JsonString(customerInfo));
 	}
 }

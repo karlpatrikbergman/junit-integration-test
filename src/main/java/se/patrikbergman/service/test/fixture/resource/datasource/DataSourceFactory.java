@@ -13,7 +13,7 @@ public final class DataSourceFactory {
 	private final Environment environment;
 
 	private DataSourceFactory() {
-		environment = EnvironmentUtil.getEnvironmentFromClasspath();
+		environment = EnvironmentUtil.getInstance().getEnvironmentFromClasspath();
 	}
 
 	private static class LazyHolder {

@@ -9,22 +9,30 @@ import se.patrikbergman.service.test.fixture.environment.Environment;
  * If no Maven profile is used the value 'dev' will be used.
  */
 public final class EnvironmentUtil {
-	private static final String className = EnvironmentUtil.class.getSimpleName();
-	private static final String resourceOnClasspath = "config.properties";
-	private static Environment environment;
+	private Environment environment;
 
-	static {
+	private EnvironmentUtil() {
+		final String className = EnvironmentUtil.class.getSimpleName();
+		final String resourceOnClasspath = "config.properties";
 		try {
 			System.out.println(String.format("%s: Reading environment from properties file (on classpath) '%s'", className, resourceOnClasspath));
 			environment = new ResourceEnvironment(resourceOnClasspath).getEnvironment();
 			System.out.println(String.format("%s: Set environment to '%s':", className, environment.getName()));
-		} catch (RuntimeException e) {
+		} catch (final RuntimeException e) {
 			System.err.println(String.format("%s: static init block: Failed to discover environment using Maven " +
 					"profile (resource filtering) and properties file config.properties. %s", className, e.getMessage()));
 		}
 	}
 
-	public static Environment getEnvironmentFromClasspath() {
+	public static EnvironmentUtil getInstance() {
+		return LazyHolder.INSTANCE;
+	}
+
+	private static class LazyHolder {
+		private static final EnvironmentUtil INSTANCE = new EnvironmentUtil();
+	}
+
+	public Environment getEnvironmentFromClasspath() {
 		return environment;
 	}
 }

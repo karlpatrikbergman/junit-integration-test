@@ -12,8 +12,8 @@ public class UserConfigurationFactory {
 
 	private final Environment environment;
 
-	public UserConfigurationFactory() {
-		environment = EnvironmentUtil.getEnvironmentFromClasspath();
+	private UserConfigurationFactory() {
+		environment = EnvironmentUtil.getInstance().getEnvironmentFromClasspath();
 	}
 
 	private static class LazyHolder {

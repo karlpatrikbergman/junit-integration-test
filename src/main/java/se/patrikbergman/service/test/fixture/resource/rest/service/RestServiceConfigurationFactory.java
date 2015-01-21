@@ -12,7 +12,7 @@ public class RestServiceConfigurationFactory {
 	private final Environment environment;
 
 	private RestServiceConfigurationFactory() {
-		environment = EnvironmentUtil.getEnvironmentFromClasspath();
+		environment = EnvironmentUtil.getInstance().getEnvironmentFromClasspath();
 	}
 
 	private static class LazyHolder {

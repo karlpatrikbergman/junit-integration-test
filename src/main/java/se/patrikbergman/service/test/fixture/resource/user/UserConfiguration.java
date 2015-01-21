@@ -56,8 +56,8 @@ public class UserConfiguration {
 			return this;
 		}
 
-		public Builder accountNumber(String atgAccountNumber) {
-			this.accountNumber = atgAccountNumber;
+		public Builder accountNumber(String accountNumber) {
+			this.accountNumber = accountNumber;
 			return this;
 		}
 
