@@ -1,27 +1,15 @@
-package se.patrikbergman.service.test.fixture.resource.customer;
+package se.patrikbergman.service.test.fixture.resource.rest.request;
 
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-public class CustomerInfo {
-	private final String firstName;
-	private final String lastName;
+public class LoginRequest {
 	private final String username;
 	private final String password;
 
-	public CustomerInfo(String firstName, String lastName, String username, String password) {
-		this.firstName = firstName;
-		this.lastName = lastName;
+	public LoginRequest(String username, String password) {
 		this.username = username;
 		this.password = password;
-	}
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
 	}
 
 	public String getUsername() {

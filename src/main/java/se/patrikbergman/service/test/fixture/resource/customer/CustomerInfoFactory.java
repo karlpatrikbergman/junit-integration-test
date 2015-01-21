@@ -42,7 +42,7 @@ public class CustomerInfoFactory {
 
 		CustomerInfo fetchCustomerInfo() {
 			//Use data source and account number to fetch customer info
-			return new CustomerInfo("Patrik", "Bergman");
+			return new CustomerInfo("Patrik", "Bergman", "patrik.bergman", "some-secret-password");
 		}
 	}
 }

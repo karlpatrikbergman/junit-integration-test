@@ -19,6 +19,5 @@ public class CustomerInfoInjectionTest {
 	public void createCustomerInfo() {
 		assertNotNull(customerInfo);
 		System.out.println(customerInfo);
-
 	}
 }
