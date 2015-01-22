@@ -7,7 +7,8 @@ Included is creation of:
 - Configuration för remote REST-service. Tests with for example REST-assured
 - Input test data that is dependent on which test-environment that the integration test is performed.
 
-Example of usage of how to set a 
+Example of usage of how to set a data source with configuration depending on in which test environment the
+integration test is run:
 
 public class DataSourceInjectionTest {
 
