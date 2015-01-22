@@ -8,10 +8,10 @@ Included is creation of:
 - Input test data that is dependent on which test-environment that the integration test is performed.
 
 Example of usage of how to set a data source with configuration depending on in which test environment the
-integration test is run:
+integration test is run.
+
 
 public class DataSourceInjectionTest {
-
 	@InjectTestResource(getFactory = DataSourceFactory.class, getMethod = DataSourceFactoryMethod.ACCOUNT)
 	public static DataSourceImpl accountDataSource;
 
@@ -26,9 +26,9 @@ public class DataSourceInjectionTest {
 	  
 		assertNotNull(accountDataSource);
 		System.out.println(accountDataSource);
-
 	}
 }
+
 
 In a module using junit-integration-test I'd rekommend 
 - placing integration tests in src/integration-test, add that folder as a test resource
