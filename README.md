@@ -1,6 +1,6 @@
 # junit-integration-test
 An example of how one could dynamically set configuration for integration tests depending on Maven profile.
-(dev, test, qa and stage)
+(dev, test, qa and stage). The code makes use of Maven filtering and JUnits @Rule.
 
 Included is creation of:
 - DataSources for injection in EJB:s.
@@ -29,4 +29,7 @@ public class DataSourceInjectionTest {
 	}
 }
 
-
+In a module using junit-integration-test I'd rekommend 
+- placing integration tests in src/integration-test, add that folder as a test resource
+- use Maven Failsafe plugin for integration tests
+- name integrations tests according to Maven standard *IT.java
