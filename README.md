@@ -33,3 +33,12 @@ In a module using junit-integration-test I'd rekommend
 - placing integration tests in src/integration-test, add that folder as a test resource
 - use Maven Failsafe plugin for integration tests
 - name integrations tests according to Maven standard *IT.java
+
+How to use:
+- Clone repository
+- mvn install
+
+How to run integrations tests for various test environments
+-  mvn verify -P dev-env-it 
+-  mvn verify -P test-env-it
+-  mvn verify -P qa-env-it
