@@ -26,10 +26,6 @@ public class TestResourcesRule extends ExternalResource {
 				final Method getInstance = factoryClass.getMethod("getInstance");
 				final Object factoryInstance = getInstance.invoke(factoryClass);
 
-//				final Constructor constructor = factoryClass.getDeclaredConstructor();
-//				constructor.setAccessible(true);
-//				final Object factoryInstance = factoryClass.newInstance();
-
 				final String methodName = injectTestResource.getMethod();
 				final Method method = factoryClass.getMethod(methodName);
 				method.setAccessible(true);
